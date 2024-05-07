@@ -1,0 +1,22 @@
+# Heapsort Implementation
+def heapsort(arr):
+    def heapify(end, i):
+        l = 2 * i + 1
+        r = 2 * i + 2
+        max = i
+        if l < end and arr[i] < arr[l]:
+            max = l
+        if r < end and arr[max] < arr[r]:
+            max = r
+        if max != i:
+            arr[i], arr[max] = arr[max], arr[i]
+            heapify(end, max)
+    n = len(arr)
+    for start in range(n // 2 - 1, -1, -1):
+        heapify(n, start)
+    for end in range(n - 1, 0, -1):
+        arr[end], arr[0] = arr[0], arr[end]
+        heapify(end, 0)
+    return arr
+
+
